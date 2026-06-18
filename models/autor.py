@@ -1,8 +1,9 @@
 class Autor:
+
     #Constructor
     def __init__(self, id, nombre):
         self.id = id
         self.nombre = nombre
-
-    def mostar_info(self):
+        
+    def mostrar_info(self):
         return f"ID: {self.id}, Nombre: {self.nombre}"
