@@ -8,7 +8,19 @@ class LibroDAO:
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        cursor.execute("SELECT * FROM libro")
+        sql = """
+            SELECT
+	            l.id,
+	            l.titulo,
+	            a.nombre as autor,
+	            l.isbn,
+	            l.disponible
+            FROM libro l
+            INNER JOIN autor a
+            ON  l.autor = a.id
+            """
+
+        cursor.execute(sql)
         registros = cursor.fetchall()
 
         libros = []
@@ -31,7 +43,8 @@ class LibroDAO:
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
 
-        sql = """INSERT INTO libro(id,titulo, autor, isbn, disponible)
+        sql = """
+        INSERT INTO libro(id,titulo, autor, isbn, disponible)
         VALUES(%s, %s, %s, %s, %s)
         """
         cursor.execute(sql, (
@@ -39,7 +52,7 @@ class LibroDAO:
             libro.titulo,
             libro.autor,
             libro.isbn,
-            libro.disponiblel
+            libro.disponible
         ))
 
         conexion.commit()
@@ -73,7 +86,7 @@ class LibroDAO:
         conexion = Conexion.obtener_conexion()
         cursor = conexion.cursor()
         
-        cursor.execute("DELETE FROM libro WHERE id = %s" , (id))
+        cursor.execute("DELETE FROM libro WHERE id = %s",(id,))
 
         conexion.commit()
         cursor.close()
@@ -84,7 +97,7 @@ class LibroDAO:
         cursor = conexion.cursor()
 
         cursor.execute("SELECT MAX(id) FROM libro")
-        resultado = cursor.fetchone
+        resultado = cursor.fetchone()
 
         cursor.close()
         conexion.close()

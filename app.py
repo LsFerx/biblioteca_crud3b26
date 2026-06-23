@@ -17,10 +17,11 @@ def ver_libros():
 
 def insertar_libro():
     print("Insertar un nuevo Libro ")
-    titulo = input("Escribe el titulo")
-    autor = int(input("Escribe el id del autor:"))
-    isbn = ("Escribe el isbn")
+    titulo = input("Escribe el titulo: ")
+    autor = int(input("Escribe el id del autor: "))
+    isbn = input("Escribe el isbn: ")
     disponible = True
+
     try:
         libro_dao = LibroDAO()
         ultimo_id = libro_dao.obtener_ultimo_id() + 1
@@ -35,7 +36,7 @@ def actualizar_libro():
     try:
         libro_dao = LibroDAO()
         print("Lista de Libros Disponibles")
-        libro_dao.obtener_todo
+        ver_libros()
         id = int(input("Seleccione el id del libro a actualizar"))
         print("Insertar un nuevo Libro ")
         titulo = input("Escribe el titulo")
@@ -51,12 +52,12 @@ def actualizar_libro():
 def eliminar_libro():
     try:
         libro_dao = LibroDAO()
-        print("Lista de Libros Disponibles:", e)
+        print("Lista de Libros Disponibles:")
         libro_dao.obtener_todo()
         id = int(input("escriba el id del libro a eliminar: "))
-        libro_dao.eliminar(id)
+        libro_dao.eliminarx(id)
     except Exception as e:
-        print(f"Error al eliminar el libro {id}", e)
+        print(f"Error al eliminar el libro", e)
 
 def main():
     print("=== BIBLIOTECA UNIVERSITARIA ===")
